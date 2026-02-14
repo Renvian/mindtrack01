@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
+</head>
+<body>
+    <div class="container" style="max-width:400px;">
+        <div class="card">
+            <h2 class="text-center">Create Account</h2>
+            <select id="role">
+                <option value="patient">Patient</option>
+                <option value="doctor">Doctor</option>
+            </select>
+            <input type="text" id="name" placeholder="Full Name">
+            <input type="number" id="age" placeholder="Age">
+            <select id="gender"><option>Male</option><option>Female</option></select>
+            <input type="email" id="email" placeholder="Email">
+            <input type="password" id="pass" placeholder="Password">
+            <button class="btn" style="width:100%" onclick="register(
+                document.getElementById('email').value,
+                document.getElementById('pass').value,
+                document.getElementById('role').value,
+                document.getElementById('name').value,
+                document.getElementById('age').value,
+                document.getElementById('gender').value
+            )">Sign Up</button>
+        </div>
+    </div>
+</body>
+</html>

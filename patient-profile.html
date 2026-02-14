@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Patient Profile</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/gemini.js"></script>
+    <script src="js/charts-logic.js"></script>
+</head>
+<body>
+    <div class="container">
+        <a href="doctor-dashboard.html" class="btn btn-secondary">← Back</a>
+        <h2 id="pName">Loading...</h2>
+        
+        <div class="grid">
+            <div class="card">
+                <h3>Trend Analysis</h3>
+                <canvas id="lineChart"></canvas>
+            </div>
+            <div class="card">
+                <h3>Mood Distribution</h3>
+                <canvas id="pieChart"></canvas>
+            </div>
+        </div>
+
+        <div class="card" style="background: #fdf2f8; border: 1px solid #fbcfe8;">
+            <h3>✨ AI Trend Summary</h3>
+            <p id="aiSummary">Generating insights...</p>
+        </div>
+    </div>
+
+    <script>
+        async function init() {
+            await checkSession();
+            const pid = localStorage.getItem('current_patient');
+            
+            // Fetch Patient Info
+            const { data: p } = await window.sb.from('patients').select('name').eq('id', pid).single();
+            document.getElementById('pName').innerText = p.name;
+
+            // Fetch Data
+            const { data: tests } = await window.sb.from('assessments').select('*').eq('patient_id', pid).order('created_at');
+            const { data: moods } = await window.sb.from('mood_logs').select('*').eq('patient_id', pid).order('created_at');
+
+            // Process Data for Charts
+            const phq = tests.filter(t => t.test_type === 'PHQ-9').map(t => t.score);
+            const gad = tests.filter(t => t.test_type === 'GAD-7').map(t => t.score);
+            const pss = tests.filter(t => t.test_type === 'PSS-10').map(t => t.score);
+            const moodScores = moods.map(m => m.mood_score);
+
+            // Render
+            renderCharts(phq, gad, pss, moodScores);
+
+            // AI
+            const summary = await generateInsight(p.name, phq, gad, pss, moodScores);
+            document.getElementById('aiSummary').innerText = summary;
+        }
+        init();
+    </script>
+</body>
+</html>
