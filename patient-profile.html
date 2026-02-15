@@ -10,12 +10,14 @@
     <script src="gemini.js"></script>
     <script src="charts-logic.js"></script>
     <script src="records.js"></script>
-    <script src="js/doctor.js"></script>
+    <script src="doctor.js"></script>
 </head>
 <body>
     <div class="container">
-        <a href="doctor-dashboard.html" class="btn btn-secondary">← Back</a>
-        <h2 id="pName">Loading...</h2>
+        <div style="margin-bottom: 1.5rem;">
+            <a href="doctor-dashboard.html" class="btn btn-secondary">← Back</a>
+        </div>
+        <h2 id="pName" style="margin-bottom: 2rem;">Loading...</h2>
         
         <div class="grid">
             <div class="card">
@@ -28,14 +30,14 @@
             </div>
         </div>
 
-        <div class="card" style="background: #fdf2f8; border: 1px solid #fbcfe8;">
+        <div class="card" style="background: linear-gradient(135deg, rgba(247, 198, 224, 0.15), rgba(195, 177, 225, 0.15)); border: 2px solid rgba(247, 198, 224, 0.4);">
             <h3>✨ AI Trend Summary</h3>
-            <p id="aiSummary">Generating insights...</p>
+            <p id="aiSummary" style="line-height: 1.8;">Generating insights...</p>
         </div>
 
-        <hr style="border: 1px solid #E0D5E8; margin: 30px 0;">
+        <hr>
 
-        <h2 style="color: var(--secondary);">💤 Sleep Analysis</h2>
+        <h2 style="color: var(--secondary); margin-top: 1rem;">💤 Sleep Analysis</h2>
         <div class="grid">
             <div class="card">
                 <h4>Sleep Duration (Hours)</h4>
@@ -47,16 +49,16 @@
             </div>
         </div>
 
-        <hr style="border: 1px solid #E0D5E8; margin: 30px 0;">
-        <h2 style="color: var(--secondary);">💊 Medication Management</h2>
+        <hr>
+        <h2 style="color: var(--secondary); margin-top: 1rem;">💊 Medication Management</h2>
 
         <div class="grid">
-            <div class="card" style="border-top: 5px solid #F5A8C1;">
+            <div class="card" style="border-top: 5px solid var(--soft-pink);">
                 <h3>Prescribe New Medication</h3>
                 <input type="text" id="medName" placeholder="Medication Name (e.g. Sertraline)">
-                <div style="display:flex; gap:10px;">
-                    <input type="text" id="medDose" placeholder="Dose (e.g. 50mg)">
-                    <input type="text" id="medFreq" placeholder="Frequency (e.g. Daily AM)">
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <input type="text" id="medDose" placeholder="Dose (e.g. 50mg)" style="flex: 1; min-width: 150px;">
+                    <input type="text" id="medFreq" placeholder="Frequency (e.g. Daily AM)" style="flex: 1; min-width: 150px;">
                 </div>
                 <textarea id="medNotes" placeholder="Instructions/Side effects..."></textarea>
                 <button class="btn" onclick="addMedication()">Save Prescription</button>
@@ -70,25 +72,25 @@
             </div>
         </div>
 
-        <hr style="border: 1px solid var(--bg-color); margin: 40px 0;">
+        <hr>
 
         <div class="grid">
             <div class="card" style="border-top: 5px solid var(--secondary);">
                 <h3>💜 Clinical Notes</h3>
-                <p style="font-size: 0.8rem; color: #666;">Observations and session history</p>
-                <textarea id="clinicalNotes" style="height: 250px; border: 1px solid #E0D5E8;" placeholder="Start typing session notes..."></textarea>
-                <button class="btn" style="width: 100%; margin-top: 10px;" onclick="saveRecord('notes')">Save Notes</button>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">Observations and session history</p>
+                <textarea id="clinicalNotes" style="height: 250px;" placeholder="Start typing session notes..."></textarea>
+                <button class="btn" style="width: 100%; margin-top: 1rem;" onclick="saveRecord('notes')">Save Notes</button>
             </div>
 
-            <div class="card" style="border-top: 5px solid #F5A8C1;">
+            <div class="card" style="border-top: 5px solid var(--soft-pink);">
                 <h3>🌸 Treatment Plan</h3>
-                <p style="font-size: 0.8rem; color: #666;">Medications, therapy, and goals</p>
-                <textarea id="treatmentPlan" style="height: 250px; border: 1px solid #FDE7EF;" placeholder="Outline the treatment plan..."></textarea>
-                <button class="btn btn-secondary" style="width: 100%; margin-top: 10px; background: #F5A8C1;" onclick="saveRecord('plan')">Save Treatment Plan</button>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">Medications, therapy, and goals</p>
+                <textarea id="treatmentPlan" style="height: 250px;" placeholder="Outline the treatment plan..."></textarea>
+                <button class="btn btn-secondary" style="width: 100%; margin-top: 1rem;" onclick="saveRecord('plan')">Save Treatment Plan</button>
             </div>
         </div>
 
-        <hr style="border: 1px solid #E0D5E8; margin: 30px 0;">
+        <hr>
         <h2 style="color: var(--secondary);">🔮 Custom Test Results</h2>
         <div id="customGraphsContainer" class="grid"></div>
     </div>

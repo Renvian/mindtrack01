@@ -1,4 +1,4 @@
-const GEMINI_KEY = "";
+const GEMINI_KEY = "ENTER_API_KEY";
 
 async function generateInsight(name, phq, gad, pss, mood) {
     const prompt = `

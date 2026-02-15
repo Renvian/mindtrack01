@@ -11,8 +11,11 @@
 <body>
     <div class="container">
         <h2>PHQ-9 Assessment</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 2rem;">Please answer each question based on how often you've experienced these symptoms over the past 2 weeks.</p>
         <div id="questions"></div>
-        <button class="btn" onclick="collectAnswers()">Submit</button>
+        <div style="text-align: center; margin-top: 2rem;">
+            <button class="btn" style="padding: 1rem 3rem; font-size: 1.125rem;" onclick="collectAnswers()">Submit Assessment</button>
+        </div>
     </div>
     <script>
         const qs = [

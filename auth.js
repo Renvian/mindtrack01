@@ -27,9 +27,21 @@ async function login(email, password) {
 
 // Check Session
 async function checkSession() {
-    const { data } = await window.sb.auth.getSession();
-    if (!data.session) window.location.href = "login.html";
-    return data.session.user;
+    try {
+        // Try to refresh session first
+        await window.sb.auth.refreshSession();
+        
+        const { data } = await window.sb.auth.getSession();
+        if (!data || !data.session) {
+            window.location.href = "login.html";
+            return null;
+        }
+        return data.session.user;
+    } catch (error) {
+        console.error("Session check error:", error);
+        window.location.href = "login.html";
+        return null;
+    }
 }
 
 async function logout() {

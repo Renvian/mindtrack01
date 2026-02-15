@@ -8,9 +8,10 @@
     <script src="auth.js"></script>
 </head>
 <body>
-    <div class="container" style="max-width:400px;">
+    <div class="container" style="max-width: 450px; margin-top: 2rem;">
         <div class="card">
             <h2 class="text-center">Create Account</h2>
+            <p class="text-center" style="margin-bottom: 1.5rem; color: var(--text-secondary);">Join MindTrack today</p>
             <select id="role">
                 <option value="patient">Patient</option>
                 <option value="doctor">Doctor</option>
@@ -20,7 +21,7 @@
             <select id="gender"><option>Male</option><option>Female</option></select>
             <input type="email" id="email" placeholder="Email">
             <input type="password" id="pass" placeholder="Password">
-            <button class="btn" style="width:100%" onclick="register(
+            <button class="btn" style="width: 100%; margin-top: 0.5rem;" onclick="register(
                 document.getElementById('email').value,
                 document.getElementById('pass').value,
                 document.getElementById('role').value,
