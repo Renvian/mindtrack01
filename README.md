@@ -1,4 +1,4 @@
-# Mind Track (mindtrack01)
+# Mind Track 
 
 Mind Track is a lightweight, client-side mental health monitoring application implemented with plain HTML, CSS and vanilla JavaScript. The project implements user authentication, role-based dashboards (doctor / patient), standard mental-health assessments, mood and sleep logging, custom test creation/assignment, alerting, and visualizations.
 
@@ -25,7 +25,7 @@ These credentials are included for local testing only. Do not use them in produc
 - Utilities: optional AI summary helper (`gemini.js`) — requires an external API key
 - Notes & records: simple records and export-oriented helpers (`records.js`)
 
-## Tech stack (exact, from this repository)
+## Tech stack 
 
 - Frontend: Static HTML files (no framework) — files like `index.html`, `login.html`, `patient-dashboard.html`, `doctor-dashboard.html`
 - Styling: Plain CSS (`styles.css` and `css/styles.css`)
@@ -46,29 +46,14 @@ git clone https://github.com/Renvian/mindtrack01.git
 cd mindtrack01
 ```
 
-2. No build step is required — this is a static site. Options to serve locally:
 
-- Python 3:
-
-```bash
-python -m http.server 5500
-# then open http://localhost:5500
-```
-
-- Node (`http-server`):
-
-```bash
-npm install -g http-server
-http-server -p 5500
-```
-
-3. Configuration: Supabase
+2. Configuration: Supabase
 
 - The repository includes `supabase-config.js` with the Supabase URL and anon key used by the client code. For a secure deployment, replace or refactor this file to read from environment variables or your host's secrets.
 
 - If you prefer an `.env` workflow, create a small script to inject env values into `js/supabase-config.js` during deployment — the repo does not provide one by default.
 
-4. Charts (optional)
+3. Charts 
 
 - To enable charts, add Chart.js to pages that render charts. Example CDN include in the page `<head>`:
 
@@ -76,14 +61,7 @@ http-server -p 5500
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 ```
 
-## Screenshots
-
-Placeholders — add real screenshots to `./screenshots/` (recommended size: 1200×700).
-
-![Dashboard Screenshot](./screenshots/dashboard.png)
-![Patient Profile](./screenshots/patient-profile.png)
-
-## Project structure (actual)
+## Project structure 
 
 - assessment-gad7.html
 - assessment-phq9.html
@@ -110,7 +88,7 @@ Placeholders — add real screenshots to `./screenshots/` (recommended size: 120
 - css/styles.css
 - js/ (contains copies of some JS files)
 
-## How the core flow works (concise)
+## How the core flow works 
 
 1. Authentication: Users sign up or log in via `register.html` / `login.html`. Supabase auth is used (`auth.js`). User role is stored in `user_metadata.role` and used to route to doctor or patient dashboards.
 2. Doctor dashboard: `doctor-dashboard.html` + `doctor.js` loads patients, alerts and provides links to custom tests and patient profiles.
@@ -120,7 +98,7 @@ Placeholders — add real screenshots to `./screenshots/` (recommended size: 120
 6. Alerts: Assessments trigger alert records which change patient status badges (Green / Orange / Red) visible to doctors.
 7. Visualization: JS code uses Chart-style APIs to render trend charts (mood, assessments, sleep). Ensure Chart.js is included in pages where charts are rendered.
 
-## Future improvements (short)
+## Future improvements 
 
 - Move secrets out of source: use environment variables and server-side proxy for Supabase keys.
 - Include Chart.js CDN or bundle to guarantee chart rendering across pages.
