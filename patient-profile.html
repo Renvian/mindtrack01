@@ -10,6 +10,7 @@
     <script src="gemini.js"></script>
     <script src="charts-logic.js"></script>
     <script src="records.js"></script>
+    <script src="doctor.js"></script>
 </head>
 <body>
     <div class="container">
@@ -30,6 +31,43 @@
         <div class="card" style="background: #fdf2f8; border: 1px solid #fbcfe8;">
             <h3>✨ AI Trend Summary</h3>
             <p id="aiSummary">Generating insights...</p>
+        </div>
+
+        <hr style="border: 1px solid #E0D5E8; margin: 30px 0;">
+
+        <h2 style="color: var(--secondary);">💤 Sleep Analysis</h2>
+        <div class="grid">
+            <div class="card">
+                <h4>Sleep Duration (Hours)</h4>
+                <canvas id="sleepHoursChart"></canvas>
+            </div>
+            <div class="card">
+                <h4>Sleep Quality (1-5)</h4>
+                <canvas id="sleepQualityChart"></canvas>
+            </div>
+        </div>
+
+        <hr style="border: 1px solid #E0D5E8; margin: 30px 0;">
+        <h2 style="color: var(--secondary);">💊 Medication Management</h2>
+
+        <div class="grid">
+            <div class="card" style="border-top: 5px solid #F5A8C1;">
+                <h3>Prescribe New Medication</h3>
+                <input type="text" id="medName" placeholder="Medication Name (e.g. Sertraline)">
+                <div style="display:flex; gap:10px;">
+                    <input type="text" id="medDose" placeholder="Dose (e.g. 50mg)">
+                    <input type="text" id="medFreq" placeholder="Frequency (e.g. Daily AM)">
+                </div>
+                <textarea id="medNotes" placeholder="Instructions/Side effects..."></textarea>
+                <button class="btn" onclick="addMedication()">Save Prescription</button>
+            </div>
+
+            <div class="card">
+                <h3>Active Medications</h3>
+                <ul id="medicationList" style="list-style:none; padding:0;">
+                    <li style="color:#888; font-style:italic;">Loading...</li>
+                </ul>
+            </div>
         </div>
 
         <hr style="border: 1px solid var(--bg-color); margin: 40px 0;">
@@ -79,6 +117,12 @@
 
             // Load Patient Records (Notes & Treatment Plan)
             await loadPatientRecords();
+
+            // Load Sleep Charts and Medications
+            setTimeout(() => {
+                loadSleepCharts();
+                loadMedications();
+            }, 1000); // Small delay to ensure auth is ready
         }
         init();
     </script>
