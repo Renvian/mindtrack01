@@ -68,3 +68,24 @@ input, select, textarea {
 .mood-container { text-align: center; }
 .emoji-display { font-size: 3rem; display: block; margin: 10px; }
 input[type=range] { width: 80%; accent-color: var(--secondary); }
+
+/* Custom Test Options */
+.option-label {
+    display: block;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #E0D5E8;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    background: var(--card-bg);
+}
+.option-label:hover {
+    background: #F6F0FA;
+    border-color: var(--secondary);
+}
+.option-label input[type="radio"] {
+    width: auto;
+    margin-right: 10px;
+    accent-color: var(--secondary);
+}
